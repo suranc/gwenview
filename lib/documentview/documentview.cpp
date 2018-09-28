@@ -732,9 +732,9 @@ void DocumentView::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 void DocumentView::wheelEvent(QGraphicsSceneWheelEvent* event)
 {
-    if (d->mAdapter->canZoom() && event->modifiers() & Qt::ControlModifier) ||
+    if ((d->mAdapter->canZoom() && event->modifiers() & Qt::ControlModifier) ||
        (GwenviewConfig::mouseWheelBehavior() == MouseWheelBehavior::Zoom
-        && event->modifiers() == Qt::NoModifier) {
+        && event->modifiers() == Qt::NoModifier)) {
         d->controlWheelAccumulatedDelta += event->delta();
         // Ctrl + wheel => zoom in or out
         if (d->controlWheelAccumulatedDelta >= QWheelEvent::DefaultDeltasPerStep) {
